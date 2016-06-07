@@ -2,6 +2,14 @@
 
 Tools for assessing student projects for web development.
 
+## Setup
+
+Download project dependencies:
+
+```
+npm install
+```
+
 ## HTML Validation
 
 Create a root directory, e.g. `project_1`.
