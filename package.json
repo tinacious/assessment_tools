@@ -1,0 +1,12 @@
+{
+  "name": "validate_projects",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-html-validator": "0.0.5",
+    "gulp-folders": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "yargs": "^4.7.1"
+  }
+}
