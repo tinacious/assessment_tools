@@ -1,6 +1,7 @@
 {
   "name": "validate_projects",
   "dependencies": {
+    "css-validator": "^0.5.1"
   },
   "devDependencies": {
     "gulp": "^3.9.1",

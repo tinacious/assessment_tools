@@ -11,10 +11,12 @@ const folders = require('gulp-folders');
 let projectSourceDir = argv.path;
 
 gulp.task('validate_html', folders(projectSourceDir, function (folder) {
-    return gulp.src(path.join(projectSourceDir, folder, '*.html'))
+    return gulp.src(path.join(projectSourceDir, folder, '**/*.html'))
         .pipe(htmlValidator({ format: 'text' }))
         .pipe(rename(folder + '.txt'))
         .pipe(gulp.dest('validation_output'));
 }));
 
-gulp.task('default', ['validate_html']);
+gulp.task('default', [
+    'validate_html'
+]);
