@@ -46,6 +46,7 @@ filteredFilepaths
     const fileArr = file.split('/');
     const filename = fileArr[fileArr.length - 2]; // ok
 
+    // TODO: add a 1000 ms delay between requests
     // Validate
     validate({text: css, wc3url: 'http://www.css-validator.org/validator'}, (err, data) => {
         if (err) {
