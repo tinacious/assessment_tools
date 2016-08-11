@@ -26,7 +26,7 @@ Put each project in a directory with the student's name:
 ├── Student\ Name
     ├── images
     │   ├── facebook-icon.png
-    │   ├── glass-cactus-banner.png
+    │   ├── band-banner.png
     │   ├── instagram-icon.png
     │   └── twitter-icon.png
     ├── index.html
