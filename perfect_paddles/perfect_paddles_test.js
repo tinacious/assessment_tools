@@ -60,7 +60,27 @@ describe('Perfect Paddles', () => {
       expect(mailLink.text()).to.contain(email);
     });
 
+    it('includes a CSS reset', () => {
+      
+      Assert.ok($('link[href*="reset.css"]').length);
+    });
+
     it('social media links exist and link to the social media networks', () => {
+
+      Assert.equal($('a[href*="facebook"]').length, 1, 'Facebook link not found');
+      Assert.equal($('a[href*="instagram"]').length, 1, 'Instagram link not found');
+      Assert.equal($('a[href*="twitter"]').length, 1, 'Twitter link not found');
+      Assert.equal($('a[href*="pinterest"]').length, 1, 'Pinterest link not found');
+      Assert.equal($('a[href*="google.com"]').length, 1, 'Google+ link not found');
+    });
+
+    it('social media links use FontAwesome', () => {
+      
+      Assert.equal($('.fa-facebook').length, 1, 'Facebook icon not found');
+      Assert.equal($('.fa-instagram').length, 1, 'Instagram icon not found');
+      Assert.equal($('.fa-twitter').length, 1, 'Twitter icon not found');
+      Assert.equal($('.fa-pinterest').length, 1, 'Pinterest icon not found');
+      Assert.equal($('.fa-google-plus').length, 1, 'Google+ icon not found');
     });
 
     it('incorporates a list-based navigation', () => {
@@ -77,6 +97,73 @@ describe('Perfect Paddles', () => {
           `Link ${linkText} not in the list.`
         );
       });
+    });
+
+    it('embeds Google Maps', () => {
+
+      Assert.equal($('iframe[src*="google.com/maps"]').length, 1);
+    });
+
+  });
+
+
+  describe('CSS', () => {
+
+    let cssString = null;
+
+    before(() => {
+      
+      const response = Request('GET', process.env.CSS);
+      cssString = response.getBody('utf8');
+    });
+
+    it('uses the background property', () => {
+
+      expect(cssString).to.contain('background');
+    });
+    
+    it('alters visual display of text', () => {
+
+      ['font-family', 'color'].forEach((style) => {
+        
+        expect(cssString).to.contain(style);
+      });
+    });
+
+    it('uses @font-face', () => {
+
+      expect(cssString).to.contain('@font-face');
+    });
+    
+    it('uses some CSS3 properties', () => {
+
+      const propsNotIncl = [];
+      const css3props = ['border-radius', 'box-shadow', 'text-shadow', 'linear-gradient'];
+
+      css3props.forEach((prop) => {
+
+        const re = new RegExp(prop);
+
+        if (!cssString.match(re)) {
+          propsNotIncl.push(prop);
+        }
+      });
+
+      const acceptableThreshold = 3;
+      Assert.ok(propsNotIncl.length < acceptableThreshold, `Not enough CSS3 props: ${propsNotIncl.join(', ')}`);
+    });
+
+    it('has required media queries for mobile-first responsive design', () => {
+
+      try {
+        expect(cssString).to.contain('min-width: 600px');
+        expect(cssString).to.contain('min-width: 1140px');
+      }
+      catch (e) {
+        // whitespace :(
+        expect(cssString).to.contain('min-width:600px');
+        expect(cssString).to.contain('min-width:1140px');
+      }
     });
 
   });
