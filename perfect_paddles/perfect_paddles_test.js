@@ -29,6 +29,13 @@ describe('Perfect Paddles', () => {
 
       Assert.ok($('meta[charset]').attr('charset'));
     });
+
+    it('Required viewport meta tag is included', () => {
+
+      const viewport = $('meta[name="viewport"]').attr('content');
+
+      expect(viewport).to.contain('width=device-width');
+    });
     
     it('has paragraphs', () => {
 

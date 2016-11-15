@@ -30,13 +30,13 @@ outputCssResults();
 
 function outputHtmlResults() {
   const htmlResults = validateHtml(projectHtmlUrl);
-  console.log(`########## HTML RESULTS: ${projectHtmlUrl}`)
+  console.log(`########## HTML RESULTS: ${projectHtmlUrl}`);
   console.log(htmlResults.join('\n'));
 }
 
 function outputCssResults() {
   const cssResults = validateCss(projectCssUrl);
-  console.log(`########## CSS RESULTS: ${projectCssUrl}`)
+  console.log(`########## CSS RESULTS: ${projectCssUrl}`);
   console.log(cssResults.join('\n'));
 }
 
