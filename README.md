@@ -33,6 +33,20 @@ node perfect_paddles/perfect_paddles_validation.js http://username.github.io/per
 
 This should output both HTML and CSS validation results in the console.
 
+### Acceptance tests
+
+Acceptance tests use JSDom and jQuery to verify that the acceptance criteria are met.
+
+Run the acceptance tests with Mocha and pass the `HTML` and `CSS` URLs as environment variables to Mocha, as follows:
+
+```
+env HTML=HTML_URL CSS=CSS_URL mocha perfect_paddles/perfect_paddles_test.js
+```
+
+E.g.:
+```
+env HTML=http://username.github.io/perfect_paddles CSS=http://username.github.io/perfect_paddles/style.css mocha perfect_paddles/perfect_paddles_test.js
+```
 
 ## Project 1 (deprecated)
 
