@@ -10,13 +10,41 @@ Download project dependencies:
 npm install
 ```
 
-Download jQ with [Homebrew](http://brew.sh):
+## Perfect Paddles
+
+Perfect Paddles Project 1 assessment tools include:
+
+- HTML and CSS Validation
+- Acceptance tests for HTML and CSS requirements
+
+### HTML and CSS Validation
+
+You will need the URLs to the HTML file and the main stylesheet. Run the script with the HTML file path as the first argument and the CSS file path as the second argument:
+
+```
+node perfect_paddles/perfect_paddles_validation.js HTML_URL CSS_URL
+```
+
+E.g.:
+
+```
+node perfect_paddles/perfect_paddles_validation.js http://username.github.io/perfect_paddles http://username.github.io/perfect_paddles/style.css
+```
+
+This should output both HTML and CSS validation results in the console.
+
+
+## Project 1 (deprecated)
+
+Validation instructions for project 1.
+
+### HTML and CSS Validation
+
+jQ is required for Project 1 CSS validation. Download jQ with [Homebrew](http://brew.sh):
 
 ```
 brew install jq
 ```
-
-## HTML and CSS Validation
 
 Create a root directory, e.g. `project_1`.
 
@@ -35,7 +63,7 @@ Put each project in a directory with the student's name:
     └── style.css
 ```
 
-### HTML
+#### HTML
 
 To validate HTML, run:
 
@@ -47,7 +75,7 @@ You can drag the folder into the terminal to get the path.
 
 A directory called `validation_output` will be created. You should have a file like `Student Name.txt` for each student.
 
-### CSS
+#### CSS
 
 To validate CSS, run:
 

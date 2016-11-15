@@ -9,6 +9,7 @@
     "gulp-html-validator": "0.0.5",
     "gulp-rename": "^1.2.2",
     "gulp-w3c-css": "^1.0.1",
+    "sync-request": "^3.0.1",
     "yargs": "^4.7.1"
   }
 }
