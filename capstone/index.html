@@ -1,0 +1,177 @@
+<html>
+  <head>
+    <title>Capstone marking</title>
+    <style>
+      body {
+        font-family: Georgia, serif;
+      }
+
+      ul {
+        list-style: none;
+        padding-left: 0;
+        line-height: 2;
+      }
+
+      li {
+        padding: 10px 0;
+      }
+
+      li:nth-child(2n) {
+        background: #efefef;
+      }
+
+      label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      input[type="checkbox"] {
+        background: red;
+        display: block;
+        width: 30px;
+      }
+
+      span {
+        flex-grow: 1;
+        display: block;
+      }
+
+      #total {
+        position: fixed;
+        right: 10px;
+        top: 10px;
+        background: deeppink;
+        color: white;
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        line-height: 30px;
+        text-align: center;
+      }
+
+      #total.pass {
+        background: green;
+      }
+
+      #total.fail {
+        background: red;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="row">
+        <div class="col-xs-12">
+          <h1>Capstone Project Assessment</h1>
+
+          <ul class="list-group" id="criteria-list"></ul>
+
+          <div id="total">0</div>
+        </div>
+      </div>
+    </div>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+      var criteria = [
+        // functional
+        'Contain at least one .html file, an external .css file (a reset maybe included separately), and at least one .js file',
+        'Demonstrate effective organization of the project’s root folder',
+        'Have a Git repository initialized in its root directory',
+        'Be pushed to GitHub (with all of your commits synced to it)',
+        'Be deployed as a GitHub Pages site on a gh-pages branch in the repository (or be deployed on a purchased hosting account)',
+        'Be cross-browser friendly (your design must work on the most recent versions of Chrome, Firefox, Safari, and IE10+)',
+        // html
+        'Use the HTML5 doctype and semantic HTML5 mark-up',
+        'Include at least two img elements with alt text',
+        'Include at least three a elements',
+        'Make appropriate use of paragraph, heading, and list elements',
+        'Make appropriate use of classes and IDs',
+        'Incorporate a list-based navigation menu (if needed)',
+        'Include an HTML form on one page (with at least three different input elements and a submit button)',
+        // css
+        'Use a CSS reset',
+        'Use the background-image property at least once',
+        'Use the position and float properties where appropriate',
+        'Use flexbox properties where appropriate',
+        'Demonstrate effective use of box model properties',
+        'Demonstrate effective use of CSS properties for altering the display of text (e.g. font-family, font-style, text-transform, etc.)',
+        'Incorporate a custom font using @font-face',
+        'Incorporate a CSS3 transition',
+        'Incorporate an icon font such as Font Awesome',
+        'Make effective use of CSS best practices',
+        // RWD
+        'Be responsively designed using a mobile-first approach',
+        'Be optimized for screen widths: mobile, tablet, and desktop (at any widths that make the most sense for your project)',
+        // javascript/jquery
+        'Have the production version of the jQuery library included in the appropriate location',
+        'Wrap jQuery in $(document).ready() method (but use the short-hand!)',
+        'Include an example of context-appropriate jQuery animation, such as .show() or .fadeIn()',
+        'Include at least one jQuery event handler (using event delegation) that provides the user feedback after they take an action on the website',
+        'Not contain any syntax or reference errors in the console',
+        // additional
+        'Be based on a unique idea (your code and design need to be your own!)',
+        'Respect copyright and other content licensing concerns',
+        'Have an appealing, unified visual design'
+      ];
+
+      $(function () {
+        var $criteria = $('#criteria-list');
+        var $total = $('#total');
+        var $items = null;
+
+        var handleChange = function (evt) {
+          var totalPossibleScore = criteria.length;
+          var currentScore = 0;
+          var passingGrade = Math.ceil(totalPossibleScore / 2);
+
+          $items.each(function (index, item) {
+            var $itemInput = $(item).find('input');
+            if ($itemInput.is(':checked')) {
+              currentScore++;
+            }
+          });
+
+          $total.text(currentScore);
+          if (currentScore >= passingGrade) {
+            $total.addClass('pass');
+            $total.removeClass('fail');
+          } else {
+            $total.addClass('fail');
+            $total.removeClass('pass');
+          }
+        };
+
+        criteria
+          .forEach(function (item, index) {
+            var $item = $('<li>');
+            var $input = $('<input type="checkbox" />');
+            var $label = $('<label />');
+            var $criteriaText = $('<span />');
+
+            var idName = 'criteria-' + index;
+
+            // input stuff
+            $input.attr('id', idName);
+            $input.on('change', handleChange);
+
+            // label stuff
+            $label.attr('for', idName);
+            $criteriaText.text(item);
+
+            $label.append($input)
+              .append($criteriaText)
+              .appendTo($item);
+
+            $criteria.append($item);
+          });
+
+        $items = $('li');
+      });
+    </script>
+  </body>
+</html>
+
+
