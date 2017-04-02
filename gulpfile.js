@@ -15,14 +15,14 @@ gulp.task('validate_html', folders(projectSourceDir, function (folder) {
     return gulp.src(path.join(projectSourceDir, folder, '**/*.html'))
         .pipe(htmlValidator({ format: 'text' }))
         .pipe(rename(folder + '-html.txt'))
-        .pipe(gulp.dest('validation_output'));
+        .pipe(gulp.dest('./validation_output'));
 }));
 
 gulp.task('validate_css', folders(projectSourceDir, function (folder) {
     return gulp.src(path.join(projectSourceDir, folder, '**/*.css'))
         .pipe(cssValidator())
         .pipe(rename(folder + '-css.txt'))
-        .pipe(gulp.dest('validation_output'));
+        .pipe(gulp.dest('./validation_output'));
 }));
 
 gulp.task('default', [
