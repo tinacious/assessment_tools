@@ -57,6 +57,14 @@
       #total.fail {
         background: red;
       }
+
+      .missed-criteria {
+        width: 600px;
+        height: 400px;
+        margin: 20px auto 50px;
+        display: block;
+        font: inherit;
+      }
     </style>
   </head>
 
@@ -69,6 +77,8 @@
           <ul class="list-group" id="criteria-list"></ul>
 
           <div id="total">0</div>
+
+          <textarea id="missed-criteria" class="missed-criteria"></textarea>
         </div>
       </div>
     </div>
@@ -121,19 +131,31 @@
         var $criteria = $('#criteria-list');
         var $total = $('#total');
         var $items = null;
+        var $missedCriteria = $('#missed-criteria');
+
+        // Auto-select contents on focus
+        $missedCriteria.on('click focus', function () {
+          $(this).select();
+        });
 
         var handleChange = function (evt) {
           var totalPossibleScore = criteria.length;
           var currentScore = 0;
           var passingGrade = Math.ceil(totalPossibleScore / 2);
+          var missingCriteriaText = '';
 
           $items.each(function (index, item) {
             var $itemInput = $(item).find('input');
             if ($itemInput.is(':checked')) {
               currentScore++;
+            } else {
+              // Add to missing criteria
+              var $label = $itemInput.siblings('span');
+              missingCriteriaText += $label.text() + '\n';
             }
           });
 
+          // Update total score
           $total.text(currentScore);
           if (currentScore >= passingGrade) {
             $total.addClass('pass');
@@ -142,6 +164,9 @@
             $total.addClass('fail');
             $total.removeClass('pass');
           }
+
+          // Update missing criteria
+          $missedCriteria.text(missingCriteriaText);
         };
 
         criteria
